@@ -1,0 +1,39 @@
+* Vagrant and Chef
+** Infrastructure Automation / Devops
+   - Infrastructure should be represented in code
+   - Reproducable, Testable, Debuggable, Consistant, Reviewable Code
+** What is Vagrant
+   - http://www.vagrantup.com
+   - Ruby wrapper around VirtualBox
+   - Automates creating/destroying vm's in virtualbox
+** Setup
+   - Download and install virtualbox: [[https://www.virtualbox.org/wiki/Downloads]]
+   - To create a project for vagrant:
+     #+BEGIN_SRC shell-script
+       $ gem install vagrant chef
+       $ mkdir vagrant-chef-demo && cd vagrant-chef-demo
+       $ vagrant box add precise32 http://files.vagrantup.com/precise32.box
+       $ vagrant init precise32 # Creates a Vagrantfile
+     #+END_SRC
+** Using Vagrant
+   - Commands to know
+     #+BEGIN_SRC shell-script
+       $ vagrant up # starts vagrant box, downloads if necessary and provisions
+       $ vagrant ssh # connect to vagrant with builtin credentials
+       $ vagrant destroy # destroy the vagrant box
+       $ vagrant provision # re-runs provisioning scripts
+     #+END_SRC
+   - Ask vagrant for the rest (suspend/resume/status/etc)
+** Configuration
+   - In Vagrantfile:
+     #+BEGIN_SRC ruby
+       config.vm.box_url = "http://files.vagrantup.com/precise32.box"
+       # config.vm.boot_mode = :gui # headless default, uncomment to see
+       config.vm.network :hostonly, "192.168.33.10"
+       config.vm.provision :shell, :path => "provision.sh"
+     #+END_SRC
+   - Sudo edit /etc/hosts to add:
+     : 192.168.33.10 vagrant.stlruby.org vagrant
+   - Let's see this in action
+     : $ vagrant up
+
