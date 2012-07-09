@@ -65,11 +65,16 @@ Vagrant::Config.run do |config|
   config.vm.provision :shell, :path => "provision.sh"
   # config.vm.provision :chef_solo do |chef|
   #   chef.cookbooks_path = "cookbooks"
-  #   chef.add_recipe "mysql"
-  #   chef.add_role "web"
-  #
-  #   # You may also specify custom JSON attributes:
-  #   chef.json = { :mysql_password => "foo" }
+  #   chef.roles_path = "roles"
+  #   chef.add_role "basic"
+
+  #    # You may also specify custom JSON attributes:
+  #   chef.json = {
+  #     :openssh => {
+  #       :permit_root_login => "no",
+  #       :password_authentication => "yes"
+  #     }
+  #   }
   # end
 
   # Enable provisioning with chef server, specifying the chef server URL,
