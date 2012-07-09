@@ -1,14 +1,18 @@
 #+TITLE: Vagrant and Chef
-#+AUTHOR: Charles L.G. Comstock
+#+AUTHOR: Charles Comstock
 #+EMAIL: dgtized@gmail.com
 #+STARTUP: nohide
 * Infrastructure Automation / Devops
-- Reproducible, Testable, Debuggable, Reviewable Code
-- Infrastructure should be represented in code
+- Infrastructure should be code
+- Reproducible
+- Testable
+- Debuggable
+- Reviewable
 * What is Vagrant
 - http://www.vagrantup.com
 - Ruby wrapper around VirtualBox
 - Automates creating/destroying vm's in VirtualBox
+- A sandbox to test, make mistakes, and try things
 * Setup
 - Download and install virtualbox
   [[https://www.virtualbox.org/wiki/Downloads]]
@@ -34,8 +38,10 @@
 * Configuration
 - In Vagrantfile:
   #+BEGIN_SRC ruby
-    config.vm.box_url = "http://files.vagrantup.com/precise32.box"
-    # config.vm.boot_mode = :gui # headless default, uncomment to see
+    config.vm.box_url =
+      "http://files.vagrantup.com/precise32.box"
+    # headless default, uncomment to see
+    # config.vm.boot_mode = :gui
     config.vm.network :hostonly, "192.168.33.10"
     config.vm.provision :shell, :path => "provision.sh"
   #+END_SRC
@@ -43,3 +49,29 @@
   : 192.168.33.10 vagrant.stlruby.org vagrant
 - Let's see this in action
   : $ vagrant up
+* A Sandbox
+- [X] Reproducible
+- [X] Testable
+
+* Chef
+- A framework for infrastructure automation
+- Configuration Management
+- Idempotent Convergence
+- Push/Pull Changes
+* Roles/Recipes/Attributes
+- Roles expand into a run_list of recipes, and roles
+- Recipes are in ruby
+  - use attributes overridden by recipes, node, roles
+* Denyhosts Example
+- cookbooks/denyhosts/recipes/default.rb
+* Openssh
+- cookbooks/openssh/recipes/default.rb
+- cookbooks/openssh/templates/debian/sshd_config.rb
+- cookbooks/openssh/attributes/default.rb
+* Solo / Server
+- Server allows code to search for matching attributes
+- Passes configuration from node to node
+
+* Comments / Questions
+
+?
