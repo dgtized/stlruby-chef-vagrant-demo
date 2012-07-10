@@ -1,5 +1,5 @@
 #+TITLE: Vagrant and Chef
-#+AUTHOR: Charles Comstock
+#+AUTHOR: Charles L.G. Comstock
 #+EMAIL: dgtized@gmail.com
 #+STARTUP: nohide
 * Infrastructure Automation / Devops
