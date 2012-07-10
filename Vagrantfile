@@ -62,20 +62,20 @@ Vagrant::Config.run do |config|
   # Enable provisioning with chef solo, specifying a cookbooks path (relative
   # to this Vagrantfile), and adding some recipes and/or roles.
   #
-  config.vm.provision :shell, :path => "provision.sh"
-  # config.vm.provision :chef_solo do |chef|
-  #   chef.cookbooks_path = "cookbooks"
-  #   chef.roles_path = "roles"
-  #   chef.add_role "basic"
+  # config.vm.provision :shell, :path => "provision.sh"
+  config.vm.provision :chef_solo do |chef|
+    chef.cookbooks_path = "cookbooks"
+    chef.roles_path = "roles"
+    chef.add_role "basic"
 
-  #    # You may also specify custom JSON attributes:
-  #   chef.json = {
-  #     :openssh => {
-  #       :permit_root_login => "no",
-  #       :password_authentication => "yes"
-  #     }
-  #   }
-  # end
+     # You may also specify custom JSON attributes:
+    chef.json = {
+      :openssh => {
+        :permit_root_login => "no",
+        :password_authentication => "yes"
+      }
+    }
+  end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
